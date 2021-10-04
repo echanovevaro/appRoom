@@ -1,0 +1,36 @@
+<div class='container'>
+	<div class='row'>
+		<div class='card mb-4 box-shadow col-6'>
+			<h2>{{room.name}}</h2>
+
+			<img src='{{room.imageUrl}}' class='img-thumbnail mb-3' />
+			<p>{{room.description}}</p>
+			<ul>
+				{{#each room.reviews}}
+					<figure>
+						<blockquote class='blockquote'>
+							<p>{{this.comment}}</p>
+						</blockquote>
+						<figcaption class='blockquote-footer'>
+
+							<cite title='Source Title'>{{this.user.username}}</cite>
+						</figcaption>
+					</figure>
+				{{/each}}
+			</ul>
+			{{#unless room.cantReview}}
+				<form action='/rooms/{{room._id}}/review' method='post'>
+
+					<div class='form-group mb-3'>
+						<label for='comment'>Review</label>
+						<textarea class='form-control' name='comment' rows='3'></textarea>
+					</div>
+					{{#if errorMessage}}
+						<p class='alert alert-danger'>{{errorMessage}}</p>
+					{{/if}}
+					<button type='submit' class='btn btn-primary'>Submit</button>
+				</form>
+			{{/unless}}
+		</div>
+	</div>
+</div>

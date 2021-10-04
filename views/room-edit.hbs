@@ -1,0 +1,33 @@
+<form action='/rooms/{{room._id}}' method='POST' enctype='multipart/form-data'>
+
+	<label class='form-label'>Name</label>
+	<input
+		class='form-control mb-3'
+		type='text'
+		name='name'
+		value='{{room.name}}'
+	/>
+
+	<label class='form-label'>Description</label>
+
+	<textarea
+		class='form-control mb-3'
+		name='description'
+		type='text'
+		id='description'
+		cols='30'
+		rows='10'
+	>{{room.description}}</textarea>
+
+	<label class='form-label'>Image Url</label>
+	<input class='form-control mb-3' type='file' name='photo' />
+
+	{{#if errorMessage}}
+		<p class='alert alert-danger'>{{errorMessage}}</p>
+	{{/if}}
+
+	<div>
+		<button class='btn btn-primary' type='submit'>Save</button>
+		<a class='btn btn-secondary' href='/'>Cancel</a>
+	</div>
+</form>
